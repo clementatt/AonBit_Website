@@ -17,17 +17,23 @@ RUN mkdir -p public
 
 # 构建应用
 # 运行构建，即使有预渲染错误也继续（这些错误不影响运行时动态渲染）
-RUN set +e && \
-    npm run build 2>&1 | tee /tmp/build.log; \
-    BUILD_EXIT=$?; \
-    if [ $BUILD_EXIT -ne 0 ]; then \
-      if grep -q "Export encountered errors" /tmp/build.log && [ -d ".next" ]; then \
+RUN npm run build > /tmp/build.log 2>&1 || true; \
+    if grep -q "Export encountered errors" /tmp/build.log; then \
+      if [ -d ".next" ] && [ -f ".next/BUILD_ID" ]; then \
         echo "⚠️  Build completed with prerender warnings (expected for dynamic pages)"; \
-        echo "✓ .next directory exists, continuing..."; \
+        echo "✓ .next directory and BUILD_ID exist, continuing..."; \
+        cat /tmp/build.log | grep -A 5 "Export encountered errors"; \
       else \
-        echo "❌ Build failed with unexpected error"; \
-        exit $BUILD_EXIT; \
+        echo "❌ Build failed: .next directory or BUILD_ID missing"; \
+        cat /tmp/build.log | tail -30; \
+        exit 1; \
       fi; \
+    elif [ ! -d ".next" ] || [ ! -f ".next/BUILD_ID" ]; then \
+      echo "❌ Build failed: .next directory or BUILD_ID missing"; \
+      cat /tmp/build.log | tail -30; \
+      exit 1; \
+    else \
+      echo "✅ Build completed successfully"; \
     fi
 
 # 生产运行阶段
