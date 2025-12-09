@@ -17,9 +17,13 @@ export default function ScrollAnimation({
   direction = 'up',
 }: ScrollAnimationProps) {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.1, triggerOnce: true })
+  
+  // 服务端渲染时，确保内容可见（避免 hydration 不匹配）
+  const isClient = typeof window !== 'undefined'
+  const shouldAnimate = isClient ? !isVisible : false
 
   const getTransform = () => {
-    if (!isVisible) {
+    if (shouldAnimate) {
       switch (direction) {
         case 'up':
           return 'translateY(30px)'
@@ -41,7 +45,7 @@ export default function ScrollAnimation({
       ref={elementRef}
       className={className}
       style={{
-        opacity: isVisible ? 1 : 0,
+        opacity: isVisible ? 1 : (isClient ? 0 : 1), // 服务端渲染时保持可见
         transform: getTransform(),
         transition: `opacity 0.8s ease-out ${delay}s, transform 0.8s ease-out ${delay}s`,
       }}

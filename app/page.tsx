@@ -2,6 +2,9 @@ import Hero from '@/components/Hero'
 import ScrollAnimation from '@/components/ScrollAnimation'
 import Link from 'next/link'
 
+// 禁用静态生成，使用动态渲染
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <main className="min-h-screen">

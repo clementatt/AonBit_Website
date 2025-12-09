@@ -1,3 +1,6 @@
+// 禁用静态生成，使用动态渲染
+export const dynamic = 'force-dynamic'
+
 export default function RecruitPage() {
   return (
     <main className="min-h-screen py-20 bg-white">
