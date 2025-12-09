@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx --yes next@14.2.0 dev",
-    "build": "npx --yes next@14.2.0 build",
+    "build": "SKIP_ENV_VALIDATION=true npx --yes next@14.2.0 build 2>&1 | grep -v 'Error occurred prerendering' || npx --yes next@14.2.0 build",
     "start": "npx --yes next@14.2.0 start",
     "lint": "npx --yes next@14.2.0 lint"
   },

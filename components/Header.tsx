@@ -5,10 +5,14 @@ import Link from 'next/link'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+  // 服务端渲染时默认为 true，避免初始状态不可见
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    setIsVisible(true)
+    // 只在客户端运行
+    if (typeof window !== 'undefined') {
+      setIsVisible(true)
+    }
   }, [])
 
   const navItems = [
