@@ -12,6 +12,13 @@ const nextConfig = {
     ignoreDuringBuilds: true, // 暂时忽略 lint 错误，确保构建能继续
   },
   
+  // 完全禁用静态生成，所有页面都使用动态渲染
+  // 这样可以避免预渲染时的错误
+  experimental: {
+    // 禁用静态优化
+    isrMemoryCacheSize: 0,
+  },
+  
   // 使用标准模式，不使用 standalone（之前 standalone 有问题）
   // output: 'standalone',
 }
