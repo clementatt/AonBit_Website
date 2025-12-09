@@ -37,6 +37,20 @@ RUN npm run build > /tmp/build.log 2>&1; \
       exit $BUILD_EXIT; \
     fi
 
+# 确保 prerender-manifest.json 存在（Next.js 运行时需要此文件）
+# 如果只有 .js 文件，从 .js 文件中提取 JSON 或创建基本结构
+RUN if [ ! -f ".next/prerender-manifest.json" ]; then \
+      if [ -f ".next/prerender-manifest.js" ]; then \
+        # 尝试从 .js 文件中提取 JSON（如果格式允许）\
+        node -e "const fs=require('fs'); const content=fs.readFileSync('.next/prerender-manifest.js','utf8'); const match=content.match(/__PRERENDER_MANIFEST=\"(.+)\"/); if(match) { try { const json=JSON.parse(match[1].replace(/\\\\\"/g,'\"')); fs.writeFileSync('.next/prerender-manifest.json', JSON.stringify(json, null, 2)); } catch(e) { fs.writeFileSync('.next/prerender-manifest.json', JSON.stringify({version:3,routes:{},dynamicRoutes:{},notFoundRoutes:[],preview:null})); } } else { fs.writeFileSync('.next/prerender-manifest.json', JSON.stringify({version:3,routes:{},dynamicRoutes:{},notFoundRoutes:[],preview:null})); }" || \
+        echo '{"version":3,"routes":{},"dynamicRoutes":{},"notFoundRoutes":[],"preview":null}' > .next/prerender-manifest.json; \
+      else \
+        # 如果两个文件都不存在，创建基本的 JSON 文件
+        echo '{"version":3,"routes":{},"dynamicRoutes":{},"notFoundRoutes":[],"preview":null}' > .next/prerender-manifest.json; \
+      fi; \
+      echo "✓ Created prerender-manifest.json"; \
+    fi
+
 # 生产运行阶段
 FROM node:18-alpine AS runner
 
