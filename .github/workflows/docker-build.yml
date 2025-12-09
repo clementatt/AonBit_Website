@@ -19,6 +19,7 @@ on:
       - 'tsconfig.json'
       - 'Dockerfile'
       - '.dockerignore'
+      - '.github/workflows/**'  # 工作流文件变更时也触发
   pull_request:
     branches:
       - main
@@ -31,6 +32,7 @@ on:
       - 'package-lock.json'
       - 'next.config.js'
       - 'Dockerfile'
+      - '.github/workflows/**'  # 工作流文件变更时也触发
   workflow_dispatch:
     inputs:
       tag:
