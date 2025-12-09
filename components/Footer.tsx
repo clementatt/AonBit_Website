@@ -17,9 +17,9 @@ export default function Footer() {
             <div>
               <h3 className="text-2xl font-bold mb-4">AONBIT</h3>
               <div className="space-y-2 text-gray-300">
-                <p className="text-sm">株式会社AonBit</p>
-                <p className="text-sm">〒171-0014 東京都豊島区池袋4-27-12 CPビル3F</p>
-                <p className="text-sm">TEL: 03-6821-2456</p>
+                <p className="text-sm">AonBit株式会社</p>
+                <p className="text-sm">〒111-0052 東京都台東区柳橋1丁目16-3 Gran+Asakusabashi―III 4F 5F</p>
+                <p className="text-sm">TEL: </p>
               </div>
             </div>
             <div>
@@ -42,7 +42,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center">
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} 株式会社AonBit All rights reserved.
+              © {new Date().getFullYear()} AonBit株式会社 All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 sm:mt-0">
               <Link

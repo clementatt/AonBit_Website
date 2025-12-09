@@ -10,19 +10,19 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    title1: '企業が本当に求める価値を',
-    title2: '実現できる社会',
-    subtitle: 'A society where the value that companies truly seek can be realized',
+    title1: '未来は創るもの。',
+    title2: '技術はその翼。',
+    subtitle: 'The future is created. Technology is its wings.',
   },
   {
-    title1: 'True Value.',
-    title2: 'Real Impact.',
-    subtitle: '企業が本当に求める価値を実現できる社会を目指して',
-  },
-  {
-    title1: '想像を超えた価値を、最適なソリューションで実現する',
+    title1: '革新を、より確かな形へ。',
     title2: '',
-    subtitle: '想像を超えた価値を、最適なソリューションで実現する',
+    subtitle: 'Innovation, shaped into certainty.',
+  },
+  {
+    title1: '予測を超えて。',
+    title2: '価値へ直行する。',
+    subtitle: 'Beyond prediction. Straight to value.',
   },
 ]
 
@@ -275,7 +275,7 @@ export default function Hero() {
         <div className="text-center relative">
           {slides.map((slide, index) => {
             const isActive = index === currentSlide
-            const isFirstSlide = index === 0
+            const hasTitle2 = slide.title2 !== ''
             const isSecondSlide = index === 1
 
             return (
@@ -286,7 +286,7 @@ export default function Hero() {
                 } ${isActive ? 'relative' : 'absolute inset-0 flex items-center justify-center'}`}
               >
                 <div>
-                  {isFirstSlide ? (
+                  {hasTitle2 ? (
                     <>
                       <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8 text-white">
                         {slide.title1}
@@ -299,21 +299,16 @@ export default function Hero() {
                     </>
                   ) : isSecondSlide ? (
                     <>
-                      <h1 className="text-6xl md:text-8xl font-black leading-none mb-4">
-                        <span className="text-white">{slide.title1}</span>
+                      <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8 text-white">
+                        {slide.title1}
                       </h1>
-                      <h2 className="text-5xl md:text-7xl font-black leading-none mb-8">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-100">
-                          {slide.title2}
-                        </span>
-                      </h2>
-                      <p className="text-xl md:text-2xl text-gray-300 mb-12 font-light">
+                      <p className="text-xl md:text-2xl text-gray-300 font-light">
                         {slide.subtitle}
                       </p>
                     </>
                   ) : (
                     <>
-                      <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-12 text-white">
+                      <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight mb-8 text-white">
                         {slide.title1}
                       </h1>
                       <p className="text-xl md:text-2xl text-gray-300 font-light">
