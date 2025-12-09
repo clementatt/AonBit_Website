@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   // Disable Turbopack to use webpack instead
   // This avoids workspace root detection issues
-  output: 'standalone', // 启用独立输出，优化 Docker 镜像大小
+  // 暂时不使用 standalone 模式，使用标准模式更稳定
+  // output: 'standalone',
 }
 
 module.exports = nextConfig

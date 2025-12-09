@@ -26,10 +26,13 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# 复制 package 文件并安装生产依赖
+COPY package*.json ./
+RUN npm ci --only=production && npm cache clean --force
+
 # 从构建阶段复制必要文件
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 
 # 设置正确的权限
 RUN chown -R nextjs:nodejs /app
@@ -41,5 +44,5 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
 
