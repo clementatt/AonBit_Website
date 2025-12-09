@@ -5,7 +5,7 @@
 ## 文件结构
 
 ```
-.
+html/
 ├── index.html          # 首页
 ├── business.html       # 事业内容页面
 ├── company.html        # 公司信息页面
