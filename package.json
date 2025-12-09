@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx --yes next@14.2.0 dev",
-    "build": "NEXT_PRIVATE_STANDALONE=true npx --yes next@14.2.0 build || (echo 'Build completed with warnings' && exit 0)",
+    "build": "npx --yes next@14.2.0 build",
     "start": "npx --yes next@14.2.0 start",
     "lint": "npx --yes next@14.2.0 lint"
   },

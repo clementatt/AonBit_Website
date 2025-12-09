@@ -12,6 +12,9 @@ RUN npm ci
 # 复制源代码
 COPY . .
 
+# 确保 public 目录存在（如果不存在则创建）
+RUN mkdir -p public
+
 # 构建应用
 RUN npm run build
 
@@ -31,8 +34,10 @@ COPY package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 
 # 从构建阶段复制必要文件
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+# 复制 .next 构建产物
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+# 复制 public 目录（现在确保存在）
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 # 设置正确的权限
 RUN chown -R nextjs:nodejs /app
