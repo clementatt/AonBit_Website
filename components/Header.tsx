@@ -1,10 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
 
   const navItems = [
     { href: '/', label: 'トップ' },
@@ -18,7 +23,14 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0">
+          <div
+            className="flex-shrink-0"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'none' : 'translateY(-10px)',
+              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+            }}
+          >
             <Link href="/" className="group relative inline-block">
               <span className="relative z-10 text-2xl font-black text-white px-3 py-1 block">
                 AONBIT
@@ -27,8 +39,15 @@ export default function Header() {
           </div>
 
           <nav className="hidden md:flex items-center space-x-12">
-            {navItems.map((item) => (
-              <div key={item.href}>
+            {navItems.map((item, index) => (
+              <div
+                key={item.href}
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? 'none' : 'translateY(-10px)',
+                  transition: `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`,
+                }}
+              >
                 <Link
                   href={item.href}
                   className="relative text-white text-sm font-medium tracking-wider uppercase group block"
@@ -44,6 +63,11 @@ export default function Header() {
             className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-white/10 transition-colors duration-300 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="メニューを開く"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'none' : 'translateY(-10px)',
+              transition: 'opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s',
+            }}
           >
             {isMenuOpen ? (
               <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,8 +87,15 @@ export default function Header() {
           }`}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black border-t border-gray-800">
-            {navItems.map((item) => (
-              <div key={item.href}>
+            {navItems.map((item, index) => (
+              <div
+                key={item.href}
+                style={{
+                  opacity: isMenuOpen ? 1 : 0,
+                  transform: isMenuOpen ? 'none' : 'translateY(20px)',
+                  transition: `opacity 0.3s ease-out ${index * 0.05}s, transform 0.3s ease-out ${index * 0.05}s`,
+                }}
+              >
                 <Link
                   href={item.href}
                   className="relative text-white block text-base font-medium tracking-wider uppercase overflow-hidden group"
