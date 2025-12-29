@@ -38,6 +38,12 @@
       z-index: 50;
       background-color: #000;
       transition: all 0.5s;
+      height: 4rem; /* 小屏幕：64px，匹配 pt-16 */
+    }
+    @media (min-width: 640px) {
+      header {
+        height: 5rem; /* 大屏幕：80px，匹配 pt-20 */
+      }
     }
     header .max-w-7xl {
       max-width: 80rem;
@@ -132,11 +138,11 @@
     }
     main {
       min-height: 100vh;
-      padding-top: 4rem;
+      padding-top: 4rem; /* 64px，匹配 header 高度 */
     }
     @media (min-width: 640px) {
       main {
-        padding-top: 5rem;
+        padding-top: 5rem; /* 80px，匹配 header 高度 */
       }
     }
     /* Prevent layout shift during font load */
