@@ -107,16 +107,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
   
-  <!-- Tailwind CSS - Load immediately but asynchronously to prevent render blocking -->
-  <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-  <script>
-    (function() {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.tailwindcss.com';
-      script.async = true;
-      document.head.appendChild(script);
-    })();
-  </script>
+  <!-- Tailwind CSS - Load synchronously after critical CSS to prevent FOUC -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="antialiased">
   <!-- Header -->

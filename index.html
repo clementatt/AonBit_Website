@@ -82,8 +82,46 @@
       font-size: 1.25rem;
       line-height: 1.75rem;
     }
+    @media (min-width: 640px) {
+      header .text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+    }
     header .font-black {
       font-weight: 900;
+    }
+    header nav a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.75rem;
+      position: relative;
+    }
+    @media (min-width: 640px) {
+      header nav a {
+        font-size: 0.875rem;
+      }
+    }
+    header nav {
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+      header nav {
+        gap: 3rem;
+      }
+    }
+    /* Mobile menu - hidden by default */
+    #mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    #mobile-menu.opacity-100 {
+      opacity: 1;
+      max-height: 24rem;
     }
     /* Hero section critical styles */
     #hero-section {
@@ -105,24 +143,20 @@
     body {
       font-display: swap;
     }
+    /* Ensure body is visible even before Tailwind loads */
+    body.antialiased {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   </style>
   
   <!-- Google Fonts - Optimized: only load used weights, with display=swap -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
   
-  <!-- Tailwind CSS - Load immediately but asynchronously to prevent render blocking -->
-  <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-  <script>
-    // Load Tailwind CSS immediately but asynchronously
-    (function() {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.tailwindcss.com';
-      script.async = true;
-      // Start loading immediately, but don't block
-      document.head.appendChild(script);
-    })();
-  </script>
+  <!-- Tailwind CSS - Load synchronously after critical CSS to prevent FOUC -->
+  <!-- Critical CSS above ensures page looks good even if Tailwind is slow -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="antialiased">
   <!-- Header -->
