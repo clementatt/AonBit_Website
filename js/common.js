@@ -164,7 +164,7 @@ function initHeroCarousel() {
   }
 
   // 使用 IntersectionObserver 只在元素可见时运行动画
-  const heroSection = document.getElementById('hero-section')
+  // 注意：heroSection 已在函数开头声明，这里不需要重复声明
   if (heroSection && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -223,9 +223,23 @@ function initHeroCarousel() {
 
 // 联系表单提交已在contact.html中实现（使用mailto）
 
-// 初始化
-document.addEventListener('DOMContentLoaded', function() {
-  initHeroCarousel()
-  updateSlides() // 初始化轮播显示
-})
+// 初始化 - 确保在 DOM 和 Tailwind 都加载完成后执行
+function initializeHero() {
+  // 确保 Tailwind CSS 已加载（检查关键类是否存在）
+  if (typeof window.tailwind !== 'undefined' || document.querySelector('.hero-slide')) {
+    initHeroCarousel()
+    updateSlides() // 初始化轮播显示
+  } else {
+    // 如果 Tailwind 还没加载，等待一下
+    setTimeout(initializeHero, 100)
+  }
+}
+
+// 在 DOM 加载完成后初始化
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeHero)
+} else {
+  // DOM 已经加载完成，直接初始化
+  initializeHero()
+}
 
