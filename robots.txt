@@ -4,8 +4,5 @@
 User-agent: *
 Allow: /
 
-# 禁止抓取参考文件目录
-Disallow: /zenbit/
-
 # 站点地图位置
 Sitemap: https://aonbit.jp/sitemap.xml
