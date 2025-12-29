@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サイトマップ | AonBit株式会社</title>
+  <meta name="description" content="AonBit株式会社のサイトマップです。">
+  
+  <!-- DNS Prefetch and Preconnect for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Critical CSS - Inline for above-the-fold content -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans JP', 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background-color: #000;
+      transition: all 0.5s;
+      height: 4rem;
+    }
+    @media (min-width: 640px) {
+      header {
+        height: 5rem;
+      }
+    }
+    header .max-w-7xl {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    header .flex {
+      display: flex;
+    }
+    header .justify-between {
+      justify-content: space-between;
+    }
+    header .items-center {
+      align-items: center;
+    }
+    header .h-16 {
+      height: 4rem;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+    }
+    header nav {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      header nav {
+        display: flex;
+      }
+      header .h-20 {
+        height: 5rem;
+      }
+    }
+    header .text-white {
+      color: #fff;
+    }
+    header .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+    header .font-black {
+      font-weight: 900;
+    }
+    main {
+      min-height: 100vh;
+      padding-top: 4rem;
+    }
+    @media (min-width: 640px) {
+      main {
+        padding-top: 5rem;
+      }
+    }
+    body {
+      font-display: swap;
+    }
+  </style>
+  
+  <!-- Google Fonts - Optimized: only load used weights, with display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
+  
+  <!-- Tailwind CSS - Load synchronously after critical CSS to prevent FOUC -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 sm:h-20">
+        <div class="flex-shrink-0">
+          <a href="index.html" class="group relative inline-block">
+            <span class="relative z-10 text-xl sm:text-2xl font-black text-white px-2 sm:px-3 py-1 block">AONBIT</span>
+          </a>
+        </div>
+        <nav class="hidden md:flex items-center space-x-8 lg:space-x-12">
+          <a href="index.html" class="relative text-white text-xs sm:text-sm font-medium tracking-wider uppercase group block">
+            <span class="relative z-10 block px-2 sm:px-3 py-2">トップ</span>
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+          <a href="business.html" class="relative text-white text-xs sm:text-sm font-medium tracking-wider uppercase group block">
+            <span class="relative z-10 block px-2 sm:px-3 py-2">事業内容</span>
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+          <a href="company.html" class="relative text-white text-xs sm:text-sm font-medium tracking-wider uppercase group block">
+            <span class="relative z-10 block px-2 sm:px-3 py-2">会社情報</span>
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+          <a href="recruit.html" class="relative text-white text-xs sm:text-sm font-medium tracking-wider uppercase group block">
+            <span class="relative z-10 block px-2 sm:px-3 py-2">採用情報</span>
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+          <a href="contact.html" class="relative text-white text-xs sm:text-sm font-medium tracking-wider uppercase group block">
+            <span class="relative z-10 block px-2 sm:px-3 py-2">お問い合わせ</span>
+            <span class="absolute bottom-0 left-0 w-full h-0.5 bg-amber-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+        </nav>
+        <button onclick="toggleMobileMenu()" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 hover:bg-white/10 transition-colors duration-300" aria-label="メニューを開く">
+          <svg id="menu-icon" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 opacity-0 max-h-0">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black border-t border-gray-800">
+          <a href="index.html" class="relative text-white block text-base font-medium tracking-wider uppercase overflow-hidden group">
+            <span class="relative z-10 block px-3 py-3">トップ</span>
+          </a>
+          <a href="business.html" class="relative text-white block text-base font-medium tracking-wider uppercase overflow-hidden group">
+            <span class="relative z-10 block px-3 py-3">事業内容</span>
+          </a>
+          <a href="company.html" class="relative text-white block text-base font-medium tracking-wider uppercase overflow-hidden group">
+            <span class="relative z-10 block px-3 py-3">会社情報</span>
+          </a>
+          <a href="recruit.html" class="relative text-white block text-base font-medium tracking-wider uppercase overflow-hidden group">
+            <span class="relative z-10 block px-3 py-3">採用情報</span>
+          </a>
+          <a href="contact.html" class="relative text-white block text-base font-medium tracking-wider uppercase overflow-hidden group">
+            <span class="relative z-10 block px-3 py-3">お問い合わせ</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="min-h-screen pt-16 sm:pt-20 bg-white">
+    <section class="py-12 sm:py-16 md:py-20 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 sm:mb-16 md:mb-20">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6">サイトマップ</h1>
+          <p class="text-lg sm:text-xl md:text-2xl text-gray-600 font-light max-w-3xl">
+            当サイトの全ページ一覧です
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="border-b border-gray-200 pb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">主要ページ</h2>
+            <ul class="space-y-3">
+              <li>
+                <a href="index.html" class="text-lg text-gray-900 hover:text-gray-700 font-medium flex items-center group">
+                  <span class="mr-2">→</span>
+                  <span>トップページ</span>
+                  <span class="ml-2 text-sm text-gray-500">(AonBit株式会社 | システム開発支援・システム受託開発・DX支援専門企業)</span>
+                </a>
+              </li>
+              <li>
+                <a href="business.html" class="text-lg text-gray-900 hover:text-gray-700 font-medium flex items-center group">
+                  <span class="mr-2">→</span>
+                  <span>事業内容</span>
+                  <span class="ml-2 text-sm text-gray-500">(システム開発支援サービス、システム受託開発、DX支援サービス)</span>
+                </a>
+              </li>
+              <li>
+                <a href="company.html" class="text-lg text-gray-900 hover:text-gray-700 font-medium flex items-center group">
+                  <span class="mr-2">→</span>
+                  <span>会社情報</span>
+                  <span class="ml-2 text-sm text-gray-500">(会社概要、所在地、連絡先)</span>
+                </a>
+              </li>
+              <li>
+                <a href="recruit.html" class="text-lg text-gray-900 hover:text-gray-700 font-medium flex items-center group">
+                  <span class="mr-2">→</span>
+                  <span>採用情報</span>
+                  <span class="ml-2 text-sm text-gray-500">(募集職種、応募方法)</span>
+                </a>
+              </li>
+              <li>
+                <a href="contact.html" class="text-lg text-gray-900 hover:text-gray-700 font-medium flex items-center group">
+                  <span class="mr-2">→</span>
+                  <span>お問い合わせ</span>
+                  <span class="ml-2 text-sm text-gray-500">(お問い合わせフォーム)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="border-b border-gray-200 pb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">その他</h2>
+            <ul class="space-y-3">
+              <li>
+                <a href="sitemap.html" class="text-lg text-gray-900 hover:text-gray-700 font-medium flex items-center group">
+                  <span class="mr-2">→</span>
+                  <span>サイトマップ（このページ）</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-8 sm:py-10 md:py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">AONBIT</h3>
+            <div class="space-y-1 sm:space-y-2 text-gray-300">
+              <p class="text-xs sm:text-sm">AonBit株式会社</p>
+              <p class="text-xs sm:text-sm">〒111-0052 東京都台東区柳橋1丁目16-3 Gran+Asakusabashi―III 4F 5F</p>
+              <p class="text-xs sm:text-sm">TEL: </p>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">サイトマップ</h4>
+            <ul class="space-y-1 sm:space-y-2">
+              <li><a href="index.html" class="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors duration-200">トップ</a></li>
+              <li><a href="business.html" class="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors duration-200">事業内容</a></li>
+              <li><a href="company.html" class="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors duration-200">会社情報</a></li>
+              <li><a href="recruit.html" class="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors duration-200">採用情報</a></li>
+              <li><a href="contact.html" class="text-gray-300 hover:text-white text-xs sm:text-sm transition-colors duration-200">お問い合わせ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 py-4 sm:py-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center">
+          <p class="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+            © <script>document.write(new Date().getFullYear())</script> AonBit株式会社 All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/common.js" defer></script>
+</body>
+</html>
