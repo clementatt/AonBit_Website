@@ -223,23 +223,12 @@ function initHeroCarousel() {
 
 // 联系表单提交已在contact.html中实现（使用mailto）
 
-// 初始化 - 确保在 DOM 和 Tailwind 都加载完成后执行
-function initializeHero() {
-  // 确保 Tailwind CSS 已加载（检查关键类是否存在）
-  if (typeof window.tailwind !== 'undefined' || document.querySelector('.hero-slide')) {
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化 hero 轮播
+  if (document.querySelector('.hero-slide')) {
     initHeroCarousel()
     updateSlides() // 初始化轮播显示
-  } else {
-    // 如果 Tailwind 还没加载，等待一下
-    setTimeout(initializeHero, 100)
   }
-}
-
-// 在 DOM 加载完成后初始化
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeHero)
-} else {
-  // DOM 已经加载完成，直接初始化
-  initializeHero()
-}
+})
 
