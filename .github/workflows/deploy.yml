@@ -1,0 +1,46 @@
+name: Auto Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # 通过 SSH 连接到服务器并执行部署
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            # 进入 Git 仓库目录
+            cd /opt/1panel/www/sites/AonBit_Website
+            
+            # 拉取最新代码
+            git fetch origin main
+            git reset --hard origin/main
+            git pull origin main
+            
+            # 复制文件到网站根目录（排除不需要的文件）
+            rsync -av --delete \
+              --exclude='.git' \
+              --exclude='.github' \
+              --exclude='zenbit' \
+              --exclude='.DS_Store' \
+              --exclude='*.swp' \
+              --exclude='.gitignore' \
+              --exclude='README.md' \
+              /opt/1panel/www/sites/AonBit_Website/ \
+              /opt/1panel/www/sites/aonbit.co.jp/index/
+            
+            echo "部署完成！"
+
