@@ -124,13 +124,17 @@ function initHeroCarousel() {
   // 开始自动播放
   resetAutoPlay()
 
-  // Hero背景动画
+  // Hero背景动画 - 使用 IntersectionObserver 优化性能
   let gradient1Transform = { x: 0, scaleX: 1 }
   let gradient2Transform = { x: 0, scaleY: 1 }
   let pathOffset1 = 0
   let pathOffset2 = 0
+  let animationFrameId = null
+  let isAnimating = false
 
   function animateBackground() {
+    if (!isAnimating) return
+
     const gradient1 = document.getElementById('gradient-1')
     const gradient2 = document.getElementById('gradient-2')
     const path1 = document.getElementById('path-1')
@@ -156,13 +160,42 @@ function initHeroCarousel() {
       path2.setAttribute('stroke-dashoffset', pathOffset2)
     }
 
-    requestAnimationFrame(animateBackground)
+    animationFrameId = requestAnimationFrame(animateBackground)
   }
 
-  animateBackground()
+  // 使用 IntersectionObserver 只在元素可见时运行动画
+  const heroSection = document.getElementById('hero-section')
+  if (heroSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!isAnimating) {
+            isAnimating = true
+            animateBackground()
+          }
+        } else {
+          if (isAnimating) {
+            isAnimating = false
+            if (animationFrameId) {
+              cancelAnimationFrame(animationFrameId)
+              animationFrameId = null
+            }
+          }
+        }
+      })
+    }, {
+      threshold: 0.1
+    })
+    observer.observe(heroSection)
+  } else {
+    // Fallback for browsers without IntersectionObserver
+    isAnimating = true
+    animateBackground()
+  }
 
-  // 滚动进度
-  window.addEventListener('scroll', function() {
+  // 滚动进度 - 使用节流优化性能
+  let scrollTimeout = null
+  function updateScrollIndicator() {
     const scrollIndicator = document.getElementById('scroll-indicator')
     if (scrollIndicator) {
       const windowHeight = window.innerHeight
@@ -170,7 +203,22 @@ function initHeroCarousel() {
       const progress = Math.min((scrollY / windowHeight) * 100, 100)
       scrollIndicator.style.transform = `translateY(${progress * 1.5}px)`
     }
-  })
+  }
+  
+  // 节流函数：限制滚动事件处理频率
+  function throttle(func, wait) {
+    let timeout
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
+      }
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+    }
+  }
+  
+  window.addEventListener('scroll', throttle(updateScrollIndicator, 16), { passive: true })
 }
 
 // 联系表单提交已在contact.html中实现（使用mailto）

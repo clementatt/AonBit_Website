@@ -5,18 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AonBit株式会社 | システム開発支援・システム受託開発・DX支援専門企業</title>
   <meta name="description" content="AonBit株式会社はシステム開発支援・システム受託開発・DX支援を提供する専門企業です。">
-  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- DNS Prefetch and Preconnect for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Critical CSS - Inline for above-the-fold content -->
   <style>
+    /* Critical styles for header and hero section */
     body {
       font-family: 'Noto Sans JP', 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
     }
     html {
       scroll-behavior: smooth;
     }
+    /* Header critical styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background-color: #000;
+    }
+    /* Hero section critical styles */
+    #hero-section {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: #000;
+    }
+    /* Prevent layout shift during font load */
+    body {
+      font-display: swap;
+    }
   </style>
+  
+  <!-- Google Fonts - Optimized: only load used weights, with display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
+  
+  <!-- Tailwind CSS - Load after critical rendering to prevent render blocking -->
+  <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+  <script>
+    // Load Tailwind CSS after initial render
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadTailwind);
+    } else {
+      // Use requestIdleCallback if available, otherwise setTimeout
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadTailwind, { timeout: 2000 });
+      } else {
+        setTimeout(loadTailwind, 100);
+      }
+    }
+    function loadTailwind() {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.tailwindcss.com';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  </script>
 </head>
 <body class="antialiased">
   <!-- Header -->
@@ -166,9 +220,9 @@
 
               <!-- Page Indicators -->
               <div class="flex gap-2 mt-8 sm:mt-12 justify-center">
-                <button class="hero-indicator w-12 h-1 bg-white transition-all duration-300" onclick="goToSlide(0)"></button>
-                <button class="hero-indicator w-4 h-1 bg-gray-600 hover:bg-gray-400 transition-all duration-300" onclick="goToSlide(1)"></button>
-                <button class="hero-indicator w-4 h-1 bg-gray-600 hover:bg-gray-400 transition-all duration-300" onclick="goToSlide(2)"></button>
+                <button class="hero-indicator w-12 h-1 bg-white transition-all duration-300" onclick="goToSlide(0)" aria-label="スライド1に移動"></button>
+                <button class="hero-indicator w-4 h-1 bg-gray-600 hover:bg-gray-400 transition-all duration-300" onclick="goToSlide(1)" aria-label="スライド2に移動"></button>
+                <button class="hero-indicator w-4 h-1 bg-gray-600 hover:bg-gray-400 transition-all duration-300" onclick="goToSlide(2)" aria-label="スライド3に移動"></button>
               </div>
             </div>
           </div>
@@ -448,7 +502,7 @@
     </div>
   </footer>
 
-  <script src="js/common.js"></script>
+  <script src="js/common.js" defer></script>
 </body>
 </html>
 
