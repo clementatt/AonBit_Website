@@ -15,10 +15,15 @@
   
   <!-- Critical CSS - Inline for above-the-fold content -->
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Noto Sans JP', 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
       padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       font-display: swap;
     }
     html {
@@ -31,6 +36,54 @@
       right: 0;
       z-index: 50;
       background-color: #000;
+      transition: all 0.5s;
+    }
+    header .max-w-7xl {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    header .flex {
+      display: flex;
+    }
+    header .justify-between {
+      justify-content: space-between;
+    }
+    header .items-center {
+      align-items: center;
+    }
+    header .h-20 {
+      height: 5rem;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+    }
+    header nav {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      header nav {
+        display: flex;
+      }
+    }
+    header .text-white {
+      color: #fff;
+    }
+    header .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    header .font-black {
+      font-weight: 900;
+    }
+    main {
+      min-height: 100vh;
+      padding-top: 5rem;
     }
   </style>
   
@@ -38,24 +91,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet"></noscript>
   
-  <!-- Tailwind CSS - Load after critical rendering to prevent render blocking -->
+  <!-- Tailwind CSS - Load immediately but asynchronously to prevent render blocking -->
   <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
   <script>
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadTailwind);
-    } else {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadTailwind, { timeout: 2000 });
-      } else {
-        setTimeout(loadTailwind, 100);
-      }
-    }
-    function loadTailwind() {
+    (function() {
       var script = document.createElement('script');
       script.src = 'https://cdn.tailwindcss.com';
       script.async = true;
       document.head.appendChild(script);
-    }
+    })();
   </script>
 </head>
 <body class="antialiased">
@@ -264,7 +308,7 @@
             <span class="text-sm font-medium text-gray-500 tracking-wider">03</span>
             <div class="h-px bg-gray-300 flex-1"></div>
           </div>
-          <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">OneBuddy（企業成長伴走型DX支援）</h2>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">企業成長伴走型DX支援</h2>
           <p class="text-xl md:text-2xl text-gray-500 font-light mb-8">Digital Transformation Support</p>
           <p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-4xl mb-4">
             企業の事業モデル・技術スタック・組織状況を踏まえ、DX戦略・内製化・技術基盤整備・運用改善を一体型で支援。
